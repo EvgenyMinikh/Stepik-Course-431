@@ -14,12 +14,15 @@
 последовательность.
 """
 
-# alphabet = ' abcdefghijklmnopqrstuvwxyz'
 shift = int(input())
 source_string = input().strip()
+
 print('Result: "', end='')
+start, end = 0x1F600, 0x1F64F
+
 for letter in source_string:
     position = ord(letter)
-    new_position = 128512 + (position + shift) % 80
+    new_position = start + (ord(letter) - start + shift) % (end - start + 1)
     print(chr(new_position), end='')
+
 print('"', end='')
